@@ -1,0 +1,12 @@
+
+<- Vector ----------------------------------------------------------------------
+The Vector class handles x,y,x and w homogeneous coordinates.
+
+An instance can be contructed from a destination vertex instance
+Example: new Vector( array( 'dest' => new Vertex(...) ) );
+
+The dest Vertex is required.
+
+Origin vertex is optionnal for default values is a new (0,0,0,1) Vertex
+instance;
+---------------------------------------------------------------------- Vector ->
