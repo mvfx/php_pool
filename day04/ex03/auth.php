@@ -13,7 +13,7 @@ function auth($login, $pass)
 
     foreach ($user as $key => $value)
     {
-        if ($value['login'] == $login && $value['passwd'] == hash("md5", $pass))
+        if ($value['login'] == $login && $value['passwd'] == hash("whirlpool", $pass))
         {
             return true;
         }
