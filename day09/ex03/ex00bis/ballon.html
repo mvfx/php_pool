@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+    <title>EX03 - Ballon</title>
+    <style>
+        #balloon {
+            width: 200px;
+            height: 200px;
+            background: red;
+            border-radius: 100%;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="balloon"></div>
+
+<script type="text/javascript">
+
+
+
+    $(document).ready(function() {
+
+        $('#balloon').click(onBallClick);
+        $('#balloon').mouseleave(onBallOut);
+
+        const COLOR_RED = 'red';
+        const COLOR_BLUE ='blue';
+        const COLOR_GREEN = 'green';
+
+        const COLORS = [COLOR_RED, COLOR_BLUE, COLOR_GREEN];
+        const GROW_UP_SIZE = 10;
+        const GROW_DOWN_SIZE = 5;
+        const BALL_MAX_SIZE = 420;
+        const BALL_MIN_SIZE = 200;
+
+        let index = 0;
+        let size = 200;
+
+
+
+        $('#balloon').css('backgroundColor', COLOR_RED);
+
+        function onBallClick()
+        {
+            size = size + GROW_UP_SIZE;
+
+            setBallSize(`${size}px`);
+
+            if (size > BALL_MAX_SIZE)
+            {
+                setBallSize(`${BALL_MIN_SIZE}px`);
+            }
+
+            index = (index < 2) ? index + 1 : 0;
+            $('#balloon').css('backgroundColor', COLORS[index]);
+
+        }
+
+        function onBallOut()
+        {
+            size = size - GROW_DOWN_SIZE;
+
+            setBallSize(`${size}px`);
+
+            if (size < BALL_MIN_SIZE)
+            {
+                setBallSize(`${BALL_MIN_SIZE}px`);
+            }
+
+            index = (index > 0) ? index - 1 : 2;
+            $('#balloon').css('backgroundColor', COLORS[index]);
+        }
+
+
+        function setBallSize(ballSize) {
+            $('#balloon').css('width', ballSize);
+            $('#balloon').css('height', ballSize);
+        }
+    })
+
+
+
+</script>
+</body>
+</html>
+
+
+

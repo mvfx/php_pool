@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EX03 - CALC</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<form onsubmit="event.preventDefault(); doCalc(this);" method="POST">
+    <input id="value1" type="text">
+
+    <select name="operation" type="text">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="%">%</option>
+    </select>
+    <input id="value2" type="text">
+    <button id="submit" name="submit" value="OK">Try me!</button>
+</form>
+
+<script>
+
+    const ONE_SECOND = 1000;
+    const TIME_DELAY = 30 * ONE_SECOND;
+
+    function isStingInteger(value)
+    {
+        return (!isNaN(value) && parseInt(Number(value)) == value && !isNaN(parseInt(value, 10)));
+    }
+
+
+    function showPopup()
+    {
+        alert('Please, use me...');
+        setTimeout(showPopup, TIME_DELAY);
+    }
+
+    function showResult(value) {
+        console.log(value);
+        alert(value);
+    }
+
+    function doCalc(form) {
+
+        const operation = form.elements["operation"].value;
+        let value1 = form.elements["value1"].value;
+        let value2 = form.elements["value2"].value;
+
+
+        if (!isStingInteger(value1) || !isStingInteger(value2))
+        {
+            alert('Error :(');
+        }
+        else
+        {
+            value1 = parseInt(value1, 10);
+            value2 = parseInt(value2, 10);
+
+
+            if (value1 < 0 || value2 < 0) {
+                alert('Error :(');
+            }
+            else
+            {
+                if (operation == "+") {
+                    showResult(value1 + value2);
+                }
+                else if (operation == "-") {
+                    showResult(value1 - value2);
+                }
+                else if (operation == "*") {
+                    showResult(value1 * value2);
+                }
+                else if (operation == "/") {
+                    if (value2 == 0) {
+                        showResult('It’s over 9000!');
+                    }
+                    else {
+                        showResult(value1 / value2);
+                    }
+                }
+                else if (operation == "%") {
+                    if (value2 == 0) {
+                        showResult('It’s over 9000!');
+                    }
+                    else {
+                        showResult(value1 % value2);
+                    }
+                }
+            }
+        }
+    }
+
+    $(document).ready(function(){
+        setTimeout(showPopup, TIME_DELAY);
+    });
+
+
+</script>
+</body>
+</html>

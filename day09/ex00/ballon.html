@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+    <title>EX00 - Ballon</title>
+    <style>
+        #balloon {
+            width: 200px;
+            height: 200px;
+            background: red;
+            border-radius: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="balloon" onclick="onBallClick()" onmouseout="onBallOut()"></div>
+
+<script type="text/javascript">
+
+    const COLOR_RED = 'red';
+    const COLOR_BLUE ='blue';
+    const COLOR_GREEN = 'green';
+    const GROW_UP_SIZE = 10;
+    const GROW_DOWN_SIZE = 5;
+    const BALL_MAX_SIZE = 420;
+    const BALL_MIN_SIZE = 200;
+
+
+    const ball = document.getElementById('balloon');
+    const style = ball.style;
+
+    style.background = COLOR_RED;
+
+    function onBallClick()
+    {
+        const newSize = ball.offsetWidth + GROW_UP_SIZE;
+
+        setBallSize(`${newSize}px`);
+
+        if (newSize > BALL_MAX_SIZE)
+        {
+            setBallSize(`${BALL_MIN_SIZE}px`);
+        }
+
+        if (ball.style.background == COLOR_RED)
+            ball.style.background = COLOR_GREEN;
+        else if (ball.style.background == COLOR_GREEN)
+            ball.style.background = COLOR_BLUE;
+        else if (ball.style.background == COLOR_BLUE)
+            ball.style.background = COLOR_RED;
+    }
+
+    function onBallOut()
+    {
+        const newSize = ball.offsetWidth - GROW_DOWN_SIZE;
+
+        setBallSize(`${newSize}px`);
+
+        if (newSize < BALL_MIN_SIZE)
+        {
+            setBallSize(`${BALL_MIN_SIZE}px`);
+        }
+
+        if (ball.style.background == COLOR_BLUE)
+            ball.style.background = COLOR_GREEN;
+        else if (ball.style.background == COLOR_GREEN)
+            ball.style.background = COLOR_RED;
+        else if (ball.style.background == COLOR_RED)
+            ball.style.background = COLOR_BLUE;
+    }
+
+
+    function setBallSize(ballSize) {
+        style.width = style.height = ballSize;
+    }
+
+
+</script>
+</body>
+</html>
+
+
+
